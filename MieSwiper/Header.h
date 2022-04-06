@@ -22,10 +22,9 @@ extern HWND hButton[];
 LRESULT CALLBACK WinProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
 BOOL InitWnd(HWND hWnd, HINSTANCE hInstance, int nCmdShow);
 void Field(HWND hWnd);
-void Buttons(HWND hWnd);
 int randX();
 int randY();
 void Coording();
 bool Mines_coords(int a, int b);
 int NumBox(int a, int b);
-
+BOOL CALLBACK DestoryChildCallback(HWND hwnd, LPARAM lParam);

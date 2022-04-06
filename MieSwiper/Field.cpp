@@ -5,48 +5,61 @@ int coordsX[N_MINES];
 int coordsY[N_MINES];
 
 void Field(HWND hWnd) {
+	n_Buttons = 0;
+	HWND Reset = CreateWindowEx(0, L"Button", L"R", WS_CHILD | WS_BORDER | WS_VISIBLE | BS_CENTER, (60 + (X_CORD * 20)) / 2.5, 10, 25, 25, hWnd, reinterpret_cast<HMENU>(88), nullptr, nullptr);
 	Coording();
 	for (int i = 0; i < X_CORD; i++) {
 		for (int j = 0; j < Y_CORD; j++) {
 			if (Mines_coords(i, j)) {
-				CreateWindow(L"STATIC", L"*", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"*", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20+50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 1) {
-				CreateWindow(L"STATIC", L"1", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"1", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20+20, j * 20+50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 2) {
-				CreateWindow(L"STATIC", L"2", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"2", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 3) {
-				CreateWindow(L"STATIC", L"3", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"3", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 4) {
-				CreateWindow(L"STATIC", L"4", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"4", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 5) {
-				CreateWindow(L"STATIC", L"5", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"5", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 6) {
-				CreateWindow(L"STATIC", L"6", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"6", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 7) {
-				CreateWindow(L"STATIC", L"7", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"7", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else if (NumBox(i, j) == 8) {
-				CreateWindow(L"STATIC", L"8", WS_CHILD | WS_VISIBLE | SS_CENTER | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", L"8", WS_CHILD | WS_VISIBLE | SS_CENTER | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
 			else {
-				CreateWindow(L"STATIC", nullptr, WS_CHILD | WS_VISIBLE | SS_SUNKEN, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				CreateWindowEx(0, L"STATIC", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20 + 20, j * 20 + 50, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
 			}
-		}
-	}
-}
-
-void  Buttons(HWND hWnd) {
-	for (int i = 0; i < X_CORD; i++) {
-		for (int j = 0; j < Y_CORD; j++) {
-			hButton[n_Buttons] = CreateWindow(L"BUTTON", L"", WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
-			n_Buttons++;
 		}
 	}
 }

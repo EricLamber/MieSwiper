@@ -17,7 +17,7 @@ BOOL InitWnd(HWND hwnd, HINSTANCE hInstance, int nCmdShow) {
 	if (!RegisterClassEx(&wc))
 		return EXIT_FAILURE;
 
-	if (hwnd = CreateWindow(wc.lpszClassName, L"MineSwiper", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, wc.hInstance, nullptr); hwnd == INVALID_HANDLE_VALUE)
+	if (hwnd = CreateWindow(wc.lpszClassName, L"MineSwiper", WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, 0, 60 + (X_CORD * 20), 110 + (Y_CORD * 20), nullptr, nullptr, wc.hInstance, nullptr); hwnd == INVALID_HANDLE_VALUE)
 		return EXIT_FAILURE;
 
 	ShowWindow(hwnd, nCmdShow);
