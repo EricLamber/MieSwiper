@@ -1,6 +1,6 @@
 #include "Header.h"
 
-BOOL InitWnd(HWND hwnd, HINSTANCE hInstance, int nCmdShow) {
+BOOL InitMainWnd(HWND hwnd, HINSTANCE hInstance, int nCmdShow) {
 	WNDCLASSEX wc{ sizeof(WNDCLASSEX) };
 	wc.cbClsExtra = 0;
 	wc.cbWndExtra = 0;
@@ -9,7 +9,7 @@ BOOL InitWnd(HWND hwnd, HINSTANCE hInstance, int nCmdShow) {
 	wc.hIcon = LoadIcon(nullptr, IDI_APPLICATION);
 	wc.hIconSm = LoadIcon(nullptr, IDI_APPLICATION);
 	wc.hInstance = hInstance;
-	wc.lpfnWndProc = WinProc;
+	wc.lpfnWndProc = WinProc0;
 	wc.lpszClassName = L"MyAppClass";
 	wc.lpszMenuName = nullptr;
 	wc.style = CS_VREDRAW | CS_HREDRAW;
@@ -25,3 +25,24 @@ BOOL InitWnd(HWND hwnd, HINSTANCE hInstance, int nCmdShow) {
 	return true;
 }
 
+pair<bool, HWND> FrameWnd(const wstring&& winClass, const wstring&& title, HWND hParantWnd, const WNDPROC CallBack) {
+	UnregisterClass(winClass.c_str(), GetModuleHandle(nullptr));
+	WNDCLASSEX wc{ sizeof(WNDCLASSEX) };
+	HWND Frame{};
+	wc.lpfnWndProc = CallBack;
+	wc.lpszClassName = winClass.c_str();
+
+	const auto create_window = [&Frame, &winClass, &title, &hParantWnd]() -> pair<bool, HWND> {
+		if (Frame = CreateWindow(winClass.c_str(), title.c_str(), WS_CHILD | WS_VISIBLE | WS_BORDER, 20, 50, X_CORD * 20, Y_CORD * 20, hParantWnd, nullptr, nullptr, nullptr); !Frame)
+			return { false, nullptr };
+
+		ShowWindow(Frame, SW_SHOWDEFAULT);
+		UpdateWindow(Frame);
+		return {true, Frame};
+	};
+
+		if (!RegisterClassEx(&wc))
+			return create_window();
+	
+	return create_window();
+}

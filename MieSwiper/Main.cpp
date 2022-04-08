@@ -3,7 +3,7 @@
 int CALLBACK wWinMain(HINSTANCE hInstance, HINSTANCE, PWSTR szCmdLine, int nCmdShow) {
 	MSG msg{};
 	HWND hwnd{};
-	InitWnd(hwnd, hInstance, nCmdShow);
+	InitMainWnd(hwnd, hInstance, nCmdShow);
 
 	while (GetMessage(&msg, nullptr, 0, 0)) {
 		TranslateMessage(&msg);

@@ -19,8 +19,10 @@ extern int n_Buttons;
 extern HWND hButton[];
 
 //Prototypes
-LRESULT CALLBACK WinProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
-BOOL InitWnd(HWND hWnd, HINSTANCE hInstance, int nCmdShow);
+LRESULT CALLBACK WinProc0(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+LRESULT CALLBACK WinProc1(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
+BOOL InitMainWnd(HWND hWnd, HINSTANCE hInstance, int nCmdShow);
+pair<bool, HWND> FrameWnd(const wstring&& winClass, const wstring&& title, HWND hParantWnd, const WNDPROC CallBack);
 void Field(HWND hWnd);
 int randX();
 int randY();
