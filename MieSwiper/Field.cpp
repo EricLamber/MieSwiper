@@ -5,6 +5,7 @@ int coordsX[N_MINES];
 int coordsY[N_MINES];
 
 void Field(HWND hWnd) {
+	n_EmptyButtons = 0;
 	n_Buttons = 0;
 	Coording();
 	for (int i = 0; i < X_CORD; i++) {
@@ -39,8 +40,17 @@ void Field(HWND hWnd) {
 			else {
 				CreateWindowEx(0, L"STATIC", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
 			}
-			hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
-			n_Buttons++;
+
+			if (!Mines_coords(i, j) && NumBox(i, j) == 0) {
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hEmptyButton[n_EmptyButtons] = hButton[n_Buttons];
+				n_EmptyButtons++;
+				n_Buttons++;
+			}
+			else {
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				n_Buttons++;
+			}
 		}
 	}
 }

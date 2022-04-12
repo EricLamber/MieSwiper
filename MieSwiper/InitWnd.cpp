@@ -33,7 +33,7 @@ pair<bool, HWND> FrameWnd(const wstring&& winClass, const wstring&& title, HWND 
 	wc.lpszClassName = winClass.c_str();
 
 	const auto create_window = [&Frame, &winClass, &title, &hParantWnd]() -> pair<bool, HWND> {
-		if (Frame = CreateWindow(winClass.c_str(), title.c_str(), WS_CHILD | WS_VISIBLE | WS_BORDER, 20, 50, X_CORD * 20, Y_CORD * 20, hParantWnd, nullptr, nullptr, nullptr); !Frame)
+		if (Frame = CreateWindow(winClass.c_str(), title.c_str(), WS_CHILD | WS_VISIBLE | WS_BORDER, 20, 50, X_CORD * 20 + 2, Y_CORD * 20 + 2, hParantWnd, nullptr, nullptr, nullptr); !Frame)
 			return { false, nullptr };
 
 		ShowWindow(Frame, SW_SHOWDEFAULT);
