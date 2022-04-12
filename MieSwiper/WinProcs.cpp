@@ -3,10 +3,12 @@
 HWND hEmptyButton[X_CORD * Y_CORD];
 HWND hButton[X_CORD * Y_CORD];
 HWND hRepeatable[(X_CORD * Y_CORD)/2];
+HWND hMineButtons[N_MINES];
 HWND Reset{};
 int n_EmptyButtons = 0;
 int n_Buttons = 0;
 int n_Repeat = 0;
+int n_MineButtons = 0;
 
 LRESULT CALLBACK WinProc0(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	switch (uMsg) {
@@ -21,6 +23,10 @@ LRESULT CALLBACK WinProc0(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		switch (LOWORD(wParam)) {
 
 		case 88: {
+			n_MineButtons = 0;
+			n_Repeat = 0;
+			n_EmptyButtons = 0;
+			n_Buttons = 0;
 			EnumChildWindows(hWnd, DestoryChildCallback, NULL);
 			FrameWnd(L"MyFrameClass", L"", hWnd, WinProc1);
 			break;
@@ -48,9 +54,15 @@ LRESULT CALLBACK WinProc1(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 		case WM_COMMAND: {
 			for (int p = 0; p < n_Buttons; p++) {
 				if ((HWND)lParam == hButton[p]) {
-					n_Repeat = 0;
-					HideAllEmpty(hButton[p], p);
-					break;
+					if (IsMine(hButton[p])) {
+						ShowWindow(hButton[p], SW_HIDE);
+						DisplayMessageBox(hWnd);
+						break;
+					}
+					else {
+						HideAllEmpty(hButton[p], p);
+						break;
+					}
 				}
 			}
 			return 0;
@@ -156,4 +168,41 @@ bool IsRepeat(HWND hWnd) {
 		}
 	}
 	return flag;
+}
+
+bool IsMine(HWND hWnd) {
+	bool flag = 0;
+
+	for (int l = 0; l < n_MineButtons; l++) {
+		if (hWnd == hMineButtons[l]) {
+			flag = 1;
+		}
+	}
+	return flag;
+}
+
+int DisplayMessageBox(HWND hWnd) {
+	int msgboxID = MessageBox(
+		hWnd,
+		L"Opps!",
+		L"You Faild!",
+		MB_RETRYCANCEL
+	);
+
+	switch (msgboxID)
+	{
+	case IDCANCEL:
+		PostQuitMessage(0);
+		break;
+	case IDRETRY:
+		n_MineButtons = 0;
+		n_Repeat = 0;
+		n_EmptyButtons = 0;
+		n_Buttons = 0;
+		EnumChildWindows(hWnd, DestoryChildCallback, NULL);
+		Field(hWnd);
+		break;
+	}
+
+	return msgboxID;
 }

@@ -5,8 +5,6 @@ int coordsX[N_MINES];
 int coordsY[N_MINES];
 
 void Field(HWND hWnd) {
-	n_EmptyButtons = 0;
-	n_Buttons = 0;
 	Coording();
 	for (int i = 0; i < X_CORD; i++) {
 		for (int j = 0; j < Y_CORD; j++) {
@@ -45,6 +43,12 @@ void Field(HWND hWnd) {
 				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
 				hEmptyButton[n_EmptyButtons] = hButton[n_Buttons];
 				n_EmptyButtons++;
+				n_Buttons++;
+			}
+			else if (Mines_coords(i, j)) {
+				hButton[n_Buttons] = CreateWindowEx(0, L"BUTTON", nullptr, WS_CHILD | WS_VISIBLE | WS_BORDER | BS_PUSHBUTTON, i * 20, j * 20, 20, 20, hWnd, nullptr, nullptr, nullptr);
+				hMineButtons[n_MineButtons] = hButton[n_Buttons];
+				n_MineButtons++;
 				n_Buttons++;
 			}
 			else {

@@ -1,5 +1,8 @@
-MineSwiper.
+MineSwiper(With on style).
  
- 1.Field realisation - 100% (Done)
-2.Game logic - 90%
-3. Style/graphic - May be I wouldn't do it, 'cause I was interested to make logic first and learn language.
+To change Field size you need change number of X_CORD(for x coords) and Y_CORD(for y coords) in Header.h file.
+To change number of mines you need change number of N_MINES in Header.h file.
+
+Control button is only LMB.
+
+Win message is doesn't exist now. But it kinda playable. =)

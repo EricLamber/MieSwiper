@@ -20,6 +20,8 @@ extern HWND hEmptyButton[];
 extern int n_Buttons;
 extern HWND hButton[];
 extern HWND hRepeatable[];
+extern HWND hMineButtons[];
+extern int n_MineButtons;
 
 //Prototypes
 LRESULT CALLBACK WinProc0(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
@@ -33,6 +35,8 @@ void HideAllEmpty(HWND hWnd, int l);
 int randX();
 int randY();
 int NumBox(int a, int b);
+int DisplayMessageBox(HWND hWnd);
 bool Mines_coords(int a, int b);
 bool IsEmpty(HWND hWnd);
 bool IsRepeat(HWND hWnd);
+bool IsMine(HWND hWnd);
